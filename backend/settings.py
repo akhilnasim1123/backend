@@ -13,19 +13,23 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from datetime import timedelta
 import datetime
 import os
+import environ
+
 from pathlib import Path
 from dotenv import load_dotenv
-
+environ.Env.read_env()
 load_dotenv()
+env = environ.Env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+environ.Env.read_env(os.path.join(BASE_DIR,'.env'))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$+l_p%1hw-jm*^xysaz0wu67p@@+ej^!kdj(l&j77x5bz_nh0e'
+SECRET_KEY = env('SECRET_KEY')
 # os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -91,7 +95,7 @@ DATABASES = {
        'ENGINE': 'django.db.backends.postgresql',
        'NAME': 'hive open A I',
        'USER': 'postgres',
-       'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+       'PASSWORD': env('DATABASE_PASSWORD'),
        'HOST': 'localhost',
        'PORT': '5432',
    }
