@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$+l_p%1hw-jm*^xysaz0wu67p@@+ej^!kdj(l&j77x5bz_nh0e'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -92,7 +92,7 @@ DATABASES = {
        'NAME': 'hive open A I',
        'USER': 'postgres',
        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-       'HOST': 'db',
+       'HOST': 'localhost',
        'PORT': '5432',
    }
 }
